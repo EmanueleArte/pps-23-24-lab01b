@@ -43,8 +43,14 @@ public class ChessPieceTest {
 
     @Test
     public void testImpossibleKnightMovement() {
-        Pair<Integer, Integer> pair = new Pair<>(1, 2);
+        this.piece = new Knight();
         assertFalse(this.piece.move(1, 1, SIZE));
+    }
+
+    @Test
+    public void testPossibleKnightMovement() {
+        this.piece = new Knight();
+        assertTrue(this.piece.move(1, 2, SIZE));
     }
 
 }
