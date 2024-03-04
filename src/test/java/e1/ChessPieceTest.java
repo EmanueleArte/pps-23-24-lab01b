@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ChessPieceTest {
 
     private static final Pair<Integer, Integer> PAIR = new Pair<>(0, 0);
+    private static final int SIZE = 5;
     private ChessPiece piece;
 
     @BeforeEach
@@ -16,7 +17,7 @@ public class ChessPieceTest {
         this.piece = new ChessPieceAbstr() {
 
             @Override
-            public boolean move(int row, int column) {
+            public boolean move(int row, int column, int size) {
                 return false;
             }
         };
@@ -41,13 +42,9 @@ public class ChessPieceTest {
     }
 
     @Test
-    public void testKnightMovement() {
+    public void testImpossibleKnightMovement() {
         Pair<Integer, Integer> pair = new Pair<>(1, 2);
-        this.piece.move(1, 1);
-        assertAll(
-                () -> assertEquals(this.piece.getRow(), pair.getX()),
-                () -> assertEquals(this.piece.getColumn(), pair.getY())
-        );
+        assertFalse(this.piece.move(1, 1, SIZE));
     }
 
 }
