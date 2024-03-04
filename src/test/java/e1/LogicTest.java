@@ -10,7 +10,9 @@ public class LogicTest {
     private Logics logics;
 
     @BeforeEach
-    void beforeEach() { logics = new LogicsImpl(SIZE); }
+    void beforeEach() {
+        logics = new LogicsImpl(SIZE);
+    }
 
 
     @Test
@@ -18,7 +20,7 @@ public class LogicTest {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (this.logics.hasPawn(i, j)) {
-                    Assertions.assertTrue(this.logics.hasPawn(i, j));
+                    assertTrue(this.logics.hasPawn(i, j));
                 }
             }
         }
@@ -29,9 +31,16 @@ public class LogicTest {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (this.logics.hasKnight(i, j)) {
-                    Assertions.assertTrue(this.logics.hasKnight(i, j));
+                    assertTrue(this.logics.hasKnight(i, j));
                 }
             }
         }
     }
+
+    @Test
+    public void testKnightMiss() {
+        this.logics = new LogicsImpl(SIZE, new Pair<>(1, 1), new Pair<>(2, 1));
+        assertFalse(this.logics.hit(0, 0));
+    }
+
 }
