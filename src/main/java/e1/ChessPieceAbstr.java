@@ -36,7 +36,7 @@ public abstract class ChessPieceAbstr implements ChessPiece {
     }
 
     @Override
-    public abstract boolean move(int row, int column);
+    public abstract boolean move(int row, int column, int size);
 
 
 }

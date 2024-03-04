@@ -33,9 +33,10 @@ public interface ChessPiece {
      * Moves the piece to the specified position.
      * @param row the X to move to into the chessboard
      * @param column the Y to move to into the chessboard
+     * @param size the size of the chessboard
      * @return true if the move is done else false
      */
-    boolean move(final int row, final int column);
+    boolean move(final int row, final int column, final int size);
 
 
 }
