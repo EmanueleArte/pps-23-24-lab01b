@@ -16,22 +16,22 @@ public class ChessPieceImpl implements ChessPiece {
     }
 
     @Override
-    public int getX() {
+    public int getRow() {
         return this.position.getX();
     }
 
     @Override
-    public int getY() {
+    public int getColumn() {
         return this.position.getY();
     }
 
     @Override
-    public void setX(int x) {
+    public void setRow(int x) {
         this.position = new Pair<>(x, this.getY());
     }
 
     @Override
-    public void setY(int y) {
+    public void setColumn(int y) {
         this.position = new Pair<>(this.getX(), y);
     }
 }
