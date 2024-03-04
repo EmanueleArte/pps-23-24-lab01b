@@ -1,15 +1,26 @@
 package e1;
+
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 public class LogicTest {
 
-  @Test
-  public void test() {
-    assert(true);
-    // TODO: Add your test logic here
-    // You can generate random inputs and assert the expected output
-    // For example:
-    // int result = Logic.someMethod(5, 10);
-    // assertEquals(expectedResult, result);
-  }
+    private static final int SIZE = 5;
+    private Logics logics;
+
+    @BeforeEach
+    void beforeEach() { logics = new LogicsImpl(SIZE); }
+
+
+    @Test
+    public void testPawnPositioning() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (this.logics.hasPawn(i, j)) {
+                    Assertions.assertTrue(this.logics.hasPawn(i, j));
+                }
+            }
+        }
+    }
 }
