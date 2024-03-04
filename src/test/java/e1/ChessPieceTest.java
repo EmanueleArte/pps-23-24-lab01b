@@ -15,6 +15,10 @@ public class ChessPieceTest {
     void beforeEach() {
         this.piece = new ChessPieceAbstr() {
 
+            @Override
+            public boolean move(int row, int column) {
+                return false;
+            }
         };
     }
 
@@ -28,8 +32,8 @@ public class ChessPieceTest {
 
     @Test
     public void testPieceChangePositioning() {
-        this.piece.setX(1);
-        this.piece.setY(1);
+        this.piece.setRow(1);
+        this.piece.setColumn(1);
         assertAll(
                 () -> assertNotEquals(this.piece.getRow(), PAIR.getX()),
                 () -> assertNotEquals(this.piece.getColumn(), PAIR.getY())
@@ -39,8 +43,7 @@ public class ChessPieceTest {
     @Test
     public void testKnightMovement() {
         Pair<Integer, Integer> pair = new Pair<>(1, 2);
-        this.piece.setMovement();
-        this.piece.move();
+        this.piece.move(1, 1);
         assertAll(
                 () -> assertEquals(this.piece.getRow(), pair.getX()),
                 () -> assertEquals(this.piece.getColumn(), pair.getY())

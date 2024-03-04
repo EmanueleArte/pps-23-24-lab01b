@@ -27,12 +27,12 @@ public abstract class ChessPieceAbstr implements ChessPiece {
 
     @Override
     public void setRow(int row) {
-        this.position = new Pair<>(row, this.getY());
+        this.position = new Pair<>(row, this.getColumn());
     }
 
     @Override
     public void setColumn(int column) {
-        this.position = new Pair<>(this.getX(), column);
+        this.position = new Pair<>(this.getRow(), column);
     }
 
     @Override
