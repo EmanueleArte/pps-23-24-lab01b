@@ -38,9 +38,21 @@ public class LogicTest {
     }
 
     @Test
+    public void testKnightImpossibleMove() {
+        this.logics = new LogicsImpl(SIZE, new Pair<>(1, 1), new Pair<>(2, 1));
+        assertFalse(this.logics.hit(1, 1));
+    }
+
+    @Test
     public void testKnightMiss() {
         this.logics = new LogicsImpl(SIZE, new Pair<>(1, 1), new Pair<>(2, 1));
         assertFalse(this.logics.hit(0, 0));
+    }
+
+    @Test
+    public void testKnightHit() {
+        this.logics = new LogicsImpl(SIZE, new Pair<>(0, 0), new Pair<>(2, 1));
+        assertTrue(this.logics.hit(0, 0));
     }
 
 }
