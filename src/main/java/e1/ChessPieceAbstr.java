@@ -3,15 +3,15 @@ package e1;
 /**
  * Implementation of {@link ChessPiece}.
  */
-public class ChessPieceImpl implements ChessPiece {
+public class ChessPieceAbstr implements ChessPiece {
 
     private Pair<Integer, Integer> position;
 
-    public ChessPieceImpl(int x, int y) {
+    public ChessPieceAbstr(int x, int y) {
         this.position = new Pair<>(x, y);
     }
 
-    public ChessPieceImpl() {
+    public ChessPieceAbstr() {
         this(0, 0);
     }
 

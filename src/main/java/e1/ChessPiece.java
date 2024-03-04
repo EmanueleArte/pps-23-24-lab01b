@@ -9,25 +9,25 @@ public interface ChessPiece {
      * Getter for the X coordinate of the piece into the chessboard.
      * @return the X of the piece into the chessboard
      */
-    int getX();
+    int getRow();
 
     /**
      * Getter for the Y coordinate of the piece into the chessboard.
      * @return the Y of the piece into the chessboard
      */
-    int getY();
+    int getColumn();
 
     /**
      * Setter for the X coordinate of the piece into the chessboard.
      * @param x the new X of the piece into the chessboard
      */
-    void setX(final int x);
+    void setRow(final int x);
 
     /**
      * Setter for the Y coordinate of the piece into the chessboard.
      * @param y the new Y of the piece into the chessboard
      */
-    void setY(final int y);
+    void setColumn(final int y);
 
 
 }
