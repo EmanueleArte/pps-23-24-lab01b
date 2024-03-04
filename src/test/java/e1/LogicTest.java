@@ -23,4 +23,15 @@ public class LogicTest {
             }
         }
     }
+
+    @Test
+    public void testKnightPositioning() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (this.logics.hasKnight(i, j)) {
+                    Assertions.assertTrue(this.logics.hasKnight(i, j));
+                }
+            }
+        }
+    }
 }
