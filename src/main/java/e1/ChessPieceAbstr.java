@@ -3,7 +3,7 @@ package e1;
 /**
  * Implementation of {@link ChessPiece}.
  */
-public class ChessPieceAbstr implements ChessPiece {
+public abstract class ChessPieceAbstr implements ChessPiece {
 
     private Pair<Integer, Integer> position;
 
@@ -26,12 +26,17 @@ public class ChessPieceAbstr implements ChessPiece {
     }
 
     @Override
-    public void setRow(int x) {
-        this.position = new Pair<>(x, this.getY());
+    public void setRow(int row) {
+        this.position = new Pair<>(row, this.getY());
     }
 
     @Override
-    public void setColumn(int y) {
-        this.position = new Pair<>(this.getX(), y);
+    public void setColumn(int column) {
+        this.position = new Pair<>(this.getX(), column);
     }
+
+    @Override
+    public abstract boolean move(int row, int column);
+
+
 }
