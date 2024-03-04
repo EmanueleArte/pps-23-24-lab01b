@@ -8,11 +8,15 @@ public class LogicsImpl implements Logics {
 	private Pair<Integer,Integer> knight;
 	private final Random random = new Random();
 	private final int size;
+
+	public LogicsImpl(int size, Pair<Integer,Integer> pawnPosition, Pair<Integer,Integer> knightPosition) {
+		this.size = size;
+		this.pawn = pawnPosition.getX() >= 0 ? pawnPosition : this.randomEmptyPosition();
+		this.knight = pawnPosition.getX() >= 0 ? knightPosition : this.randomEmptyPosition();
+	}
 	 
     public LogicsImpl(int size){
-    	this.size = size;
-        this.pawn = this.randomEmptyPosition();
-        this.knight = this.randomEmptyPosition();	
+		this(size, new Pair<>(-1, -1), new Pair<>(-1, -1));
     }
     
 	private final Pair<Integer,Integer> randomEmptyPosition(){
