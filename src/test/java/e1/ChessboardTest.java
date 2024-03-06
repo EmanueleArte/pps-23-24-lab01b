@@ -25,4 +25,14 @@ public class ChessboardTest {
         assertEquals(1, this.chessboard.getPieces().size());
     }
 
+    @Test
+    public void testRemovePiece() {
+        this.chessboard.addPiece(new Knight());
+        this.chessboard.removePiece(0, 0);
+        assertAll(
+                () -> assertEquals(0, this.chessboard.getPieces().size()),
+                () -> assertThrows(this.chessboard.removePiece(0, 0))
+        );
+    }
+
 }
