@@ -65,4 +65,12 @@ public class ChessboardImpl implements Chessboard {
         }
     }
 
+    @Override
+    public boolean hit(ChessPiece piece, int row, int col) {
+        if (piece.move(row, col, this.size)) {
+             return this.pieces.removeIf(p -> p.getRow() == row && p.getColumn() == col);
+        }
+        return false;
+    }
+
 }

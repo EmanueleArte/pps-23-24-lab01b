@@ -36,4 +36,12 @@ public interface Chessboard {
      */
     ChessPiece removePiece(int row, int column) throws IllegalArgumentException;
 
+    /**
+     * Checks if a piece is present at a given position and can be hit by the given one.
+     * @param row the row of the piece to hit
+     * @param column the column of the piece to hit
+     * @return true if a piece is present and the move can be done, false otherwise
+     */
+    boolean hit(ChessPiece piece, int row, int col);
+
 }
