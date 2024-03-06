@@ -2,6 +2,7 @@ package e1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -21,7 +22,7 @@ public class ChessboardImpl implements Chessboard {
     @Override
     public Pair<Integer, Integer> randomEmptyPosition() {
         if (this.pieces.size() == this.size * this.size) {
-            return null;
+            return new Pair<>(-1, -1);
         }
         Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
         boolean emptyPosition = true;
@@ -43,6 +44,19 @@ public class ChessboardImpl implements Chessboard {
     @Override
     public void addPiece(ChessPiece piece) {
         this.pieces.add(piece);
+    }
+
+    @Override
+    public ChessPiece removePiece(int row, int column) throws IllegalArgumentException {
+        ChessPiece p = this.pieces.stream()
+                .filter(piece -> piece.getRow() == row && piece.getColumn() == column)
+                .findAny()
+                .orElse(null);
+        if (this.pieces.removeIf(piece -> piece.getRow() == row && piece.getColumn() == column)) {
+            return p;
+        } else {
+            throw new IllegalArgumentException("Piece not found");
+        }
     }
 
 }

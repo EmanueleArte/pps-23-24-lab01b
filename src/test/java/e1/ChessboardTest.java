@@ -31,7 +31,7 @@ public class ChessboardTest {
         this.chessboard.removePiece(0, 0);
         assertAll(
                 () -> assertEquals(0, this.chessboard.getPieces().size()),
-                () -> assertThrows(this.chessboard.removePiece(0, 0))
+                () -> assertThrows(IllegalArgumentException.class, () -> this.chessboard.removePiece(0, 0))
         );
     }
 

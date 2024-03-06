@@ -25,4 +25,13 @@ public interface Chessboard {
      */
     void addPiece(ChessPiece piece);
 
+    /**
+     * Removes a piece from the chessboard.
+     * @param row the row of the piece
+     * @param column the column of the piece
+     * @return the removed piece
+     * @throws IllegalArgumentException if the piece is not found
+     */
+    ChessPiece removePiece(int row, int column) throws IllegalArgumentException;
+
 }
