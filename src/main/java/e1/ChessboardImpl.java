@@ -22,7 +22,7 @@ public class ChessboardImpl implements Chessboard {
     @Override
     public Pair<Integer, Integer> randomEmptyPosition() {
         if (this.pieces.size() == this.size * this.size) {
-            return new Pair<>(-1, -1);
+            throw new IllegalStateException("Chessboard is full");
         }
         Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
         boolean emptyPosition = true;
@@ -42,7 +42,10 @@ public class ChessboardImpl implements Chessboard {
     }
 
     @Override
-    public void addPiece(ChessPiece piece) {
+    public void addPiece(ChessPiece piece) throws IllegalStateException {
+        if (this.pieces.size() == this.size * this.size) {
+            throw new IllegalStateException("Chessboard is full");
+        }
         this.pieces.add(piece);
     }
 

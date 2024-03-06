@@ -26,6 +26,16 @@ public class ChessboardTest {
     }
 
     @Test
+    public void testAddPieceToFullChessboard() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                this.chessboard.addPiece(new Knight());
+            }
+        }
+        assertThrows(IllegalStateException.class, () -> this.chessboard.addPiece(new Knight()));
+    }
+
+    @Test
     public void testRemovePiece() {
         this.chessboard.addPiece(new Knight());
         this.chessboard.removePiece(0, 0);
