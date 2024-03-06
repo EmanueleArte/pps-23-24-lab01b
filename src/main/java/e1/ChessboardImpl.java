@@ -46,6 +46,9 @@ public class ChessboardImpl implements Chessboard {
         if (this.pieces.size() == this.size * this.size) {
             throw new IllegalStateException("Chessboard is full");
         }
+        if (this.pieces.stream().anyMatch(p -> p.getPosition().equals(piece.getPosition()))) {
+            throw new IllegalStateException("Position is already occupied");
+        }
         this.pieces.add(piece);
     }
 

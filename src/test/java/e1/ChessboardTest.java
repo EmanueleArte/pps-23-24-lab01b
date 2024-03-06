@@ -15,7 +15,7 @@ public class ChessboardTest {
     }
 
     @Test
-    public void testPiecePositioningInEmptyChessboard() {
+    public void testPieceRandomPositioningInEmptyChessboard() {
         assertNotNull(this.chessboard.randomEmptyPosition());
     }
 
@@ -29,10 +29,16 @@ public class ChessboardTest {
     public void testAddPieceToFullChessboard() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                this.chessboard.addPiece(new Knight());
+                this.chessboard.addPiece(new Knight(i, j));
             }
         }
         assertThrows(IllegalStateException.class, () -> this.chessboard.addPiece(new Knight()));
+    }
+
+    @Test
+    public void testAddPieceToOccupiedPosition() {
+        this.chessboard.addPiece(new Knight(0, 0));
+        assertThrows(IllegalStateException.class, () -> this.chessboard.addPiece(new Knight(0, 0)));
     }
 
     @Test
@@ -44,5 +50,16 @@ public class ChessboardTest {
                 () -> assertThrows(IllegalArgumentException.class, () -> this.chessboard.removePiece(0, 0))
         );
     }
+
+    @Test
+    public void testPieceRandomPositioningInNotEmptyChessboard() {
+        for (int i = 0; i < SIZE; i++) {
+            Pair<Integer, Integer> position = this.chessboard.randomEmptyPosition();
+            this.chessboard.addPiece(new Knight(position.getX(), position.getY()));
+        }
+        assertEquals(SIZE, this.chessboard.getPieces().size());
+    }
+
+
 
 }
