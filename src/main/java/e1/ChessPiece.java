@@ -6,6 +6,12 @@ package e1;
 public interface ChessPiece {
 
     /**
+     * Getter for the position of the piece into the chessboard.
+     * @return the position of the piece into the chessboard
+     */
+    Pair<Integer, Integer> getPosition();
+
+    /**
      * Getter for the X coordinate of the piece into the chessboard.
      * @return the X of the piece into the chessboard
      */

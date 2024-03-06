@@ -1,6 +1,19 @@
 package e1;
 
+/**
+ * Represents a knight in a chess game. Extension of {@link ChessPieceAbstr}.
+
+ */
 public class Knight extends ChessPieceAbstr {
+
+    public Knight(int row, int column) {
+        super(row, column);
+    }
+
+    public Knight() {
+        super();
+    }
+
     @Override
     public boolean move(int row, int column, int size) {
 

@@ -7,12 +7,17 @@ public abstract class ChessPieceAbstr implements ChessPiece {
 
     private Pair<Integer, Integer> position;
 
-    public ChessPieceAbstr(int x, int y) {
-        this.position = new Pair<>(x, y);
+    public ChessPieceAbstr(int row, int col) {
+        this.position = new Pair<>(row, col);
     }
 
     public ChessPieceAbstr() {
         this(0, 0);
+    }
+
+    @Override
+    public Pair<Integer, Integer> getPosition() {
+        return this.position;
     }
 
     @Override
