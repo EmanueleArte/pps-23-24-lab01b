@@ -60,6 +60,14 @@ public class ChessboardTest {
         assertEquals(SIZE, this.chessboard.getPieces().size());
     }
 
-
+    @Test
+    public void testHit() {
+        this.chessboard = new ChessboardImpl(4);
+        ChessPiece knight1 = new Knight(0, 0);
+        ChessPiece knight2 = new Knight(1, 2);
+        this.chessboard.addPiece(knight1);
+        this.chessboard.addPiece(knight2);
+        assertTrue(this.chessboard.hit(knight1, 1, 2));
+    }
 
 }
