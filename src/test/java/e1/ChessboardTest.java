@@ -11,13 +11,18 @@ public class ChessboardTest {
 
     @BeforeEach
     void beforeEach() {
-        this.chessboard = new ChessboardAbstr(SIZE);
+        this.chessboard = new ChessboardImpl(SIZE);
     }
 
     @Test
     public void testPiecePositioningInEmptyChessboard() {
-        System.out.println(this.chessboard.randomEmptyPosition());
         assertNotNull(this.chessboard.randomEmptyPosition());
+    }
+
+    @Test
+    public void testAddPiece() {
+        this.chessboard.addPiece(new Knight());
+        assertEquals(1, this.chessboard.getPieces().size());
     }
 
 }
