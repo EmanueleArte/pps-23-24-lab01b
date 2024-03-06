@@ -24,7 +24,7 @@ public class ChessboardImpl implements Chessboard {
         if (this.pieces.size() == this.size * this.size) {
             throw new IllegalStateException("Chessboard is full");
         }
-        Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
+        Pair<Integer, Integer> pos = new Pair<>(this.random.nextInt(size), this.random.nextInt(size));
         boolean emptyPosition = true;
         for (ChessPiece piece : pieces) {
             if (piece.getPosition().equals(pos)) {
@@ -66,9 +66,13 @@ public class ChessboardImpl implements Chessboard {
     }
 
     @Override
-    public boolean hit(ChessPiece piece, int row, int col) {
-        if (piece.move(row, col, this.size)) {
-             return this.pieces.removeIf(p -> p.getRow() == row && p.getColumn() == col);
+    public boolean hit(ChessPiece piece, int row, int column) {
+        if (piece.getRow() != row && piece.getColumn() != column) {
+            boolean isHit = this.pieces.stream()
+                    .anyMatch(p -> p.getRow() == row && p.getColumn() == column);
+            if (piece.move(row, column, this.size)) {
+                return isHit;
+            }
         }
         return false;
     }

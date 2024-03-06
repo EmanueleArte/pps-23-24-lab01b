@@ -42,6 +42,6 @@ public interface Chessboard {
      * @param column the column of the piece to hit
      * @return true if a piece is present and the move can be done, false otherwise
      */
-    boolean hit(ChessPiece piece, int row, int col);
+    boolean hit(ChessPiece piece, int row, int column);
 
 }

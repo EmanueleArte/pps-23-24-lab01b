@@ -67,7 +67,25 @@ public class ChessboardTest {
         ChessPiece knight2 = new Knight(1, 2);
         this.chessboard.addPiece(knight1);
         this.chessboard.addPiece(knight2);
-        assertTrue(this.chessboard.hit(knight1, 1, 2));
+        assertTrue(this.chessboard.hit(knight1, knight2.getRow(), knight2.getColumn()));
+    }
+
+    @Test
+    public void testHitEmptyPosition() {
+        this.chessboard = new ChessboardImpl(4);
+        ChessPiece knight1 = new Knight(0, 0);
+        this.chessboard.addPiece(knight1);
+        assertFalse(this.chessboard.hit(knight1, 1, 2));
+    }
+
+    @Test
+    public void testHitImpossibleMove() {
+        this.chessboard = new ChessboardImpl(4);
+        ChessPiece knight1 = new Knight(0, 0);
+        ChessPiece knight2 = new Knight(1, 1);
+        this.chessboard.addPiece(knight1);
+        this.chessboard.addPiece(knight2);
+        assertFalse(this.chessboard.hit(knight1, knight2.getRow(), knight2.getColumn()));
     }
 
 }
