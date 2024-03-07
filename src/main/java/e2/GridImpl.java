@@ -86,4 +86,9 @@ public class GridImpl implements Grid {
                 .filter(p -> this.cells.get(p).isMine())
                 .count();
     }
+
+    @Override
+    public Cell getCell(Pair<Integer, Integer> pos) {
+        return this.cells.get(pos);
+    }
 }

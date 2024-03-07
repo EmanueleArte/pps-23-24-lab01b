@@ -48,4 +48,12 @@ public interface Grid {
      */
     int revealCell(Pair<Integer, Integer> pos);
 
+    /**
+     * Returns the cell at the given position.
+     *
+     * @param pos the position of the cell to be returned
+     * @return the cell at the given position
+     */
+    Cell getCell(Pair<Integer, Integer> pos);
+
 }
