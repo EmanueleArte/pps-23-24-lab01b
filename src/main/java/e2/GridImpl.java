@@ -71,8 +71,10 @@ public class GridImpl implements Grid {
     }
 
     @Override
-    public int selectCell(Pair<Integer, Integer> pos) {
-        if (this.cells.get(pos).isMine()) {
+    public int revealCell(Pair<Integer, Integer> pos) {
+        Cell cell = this.cells.get(pos);
+        cell.reveal();
+        if (cell.isMine()) {
             return MINE_FOUND;
         }
         return (int) IntStream.rangeClosed(-1, 1)

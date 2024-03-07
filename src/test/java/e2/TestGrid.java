@@ -55,30 +55,30 @@ public class TestGrid {
 
     @Test
     void testFlagCell() {
-        Pair<Integer, Integer> pos = new Pair<>(0, 0);
-        this.grid.switchFlag(pos);
-        assertTrue(this.grid.isFlagged(pos));
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        this.grid.switchFlag(position);
+        assertTrue(this.grid.isFlagged(position));
     }
 
     @Test
     void testWin() {
         this.grid = new GridImpl(1, 1);
-        Pair<Integer, Integer> pos = new Pair<>(0, 0);
-        this.grid.switchFlag(pos);
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        this.grid.switchFlag(position);
         assertEquals(0, this.grid.getMines());
     }
 
     @Test
     void testLose() {
         this.grid = new GridImpl(1, 1);
-        Pair<Integer, Integer> pos = new Pair<>(0, 0);
-        assertEquals(GridImpl.MINE_FOUND, this.grid.selectCell(pos));
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        assertEquals(GridImpl.MINE_FOUND, this.grid.revealCell(position));
     }
 
     @Test
-    void testSelectCell() {
+    void testRevealCell() {
         this.grid = new GridImpl(SIZE, 0);
-        assertEquals(0, this.grid.selectCell(new Pair<>(1, 1)));
+        assertEquals(0, this.grid.revealCell(new Pair<>(1, 1)));
     }
 
 }
