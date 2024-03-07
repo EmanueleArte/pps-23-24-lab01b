@@ -39,4 +39,13 @@ public interface Grid {
      */
     boolean isFlagged(Pair<Integer, Integer> pos);
 
+    /**
+     * Selects the cell at the given position.
+     *
+     * @param pos the position of the cell to be selected
+     * @return a number between 0 and 8, representing the number of mines around the cell, or a default MINE_FOUND value
+     * if the cell is a mine
+     */
+    int selectCell(Pair<Integer, Integer> pos);
+
 }

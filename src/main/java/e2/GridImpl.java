@@ -69,4 +69,12 @@ public class GridImpl implements Grid {
     public boolean isFlagged(Pair<Integer, Integer> pos) {
         return this.cells.get(pos).isFlagged();
     }
+
+    @Override
+    public int selectCell(Pair<Integer, Integer> pos) {
+        if (this.cells.get(pos).isMine()) {
+            return MINE_FOUND;
+        }
+        return 1;
+    }
 }
