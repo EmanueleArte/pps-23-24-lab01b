@@ -75,6 +75,13 @@ public class GridImpl implements Grid {
         if (this.cells.get(pos).isMine()) {
             return MINE_FOUND;
         }
-        return 1;
+        return (int) IntStream.rangeClosed(-1, 1)
+                .mapToObj(i -> IntStream.rangeClosed(-1, 1)
+                        .mapToObj(j -> new Pair<>(pos.getX() + i, pos.getY() + j)))
+                .flatMap(p -> p)
+                .filter(p -> p.getX() >= 0 && p.getX() < Math.sqrt(this.cells.size()))
+                .filter(p -> p.getY() >= 0 && p.getY() < Math.sqrt(this.cells.size()))
+                .filter(p -> this.cells.get(p).isMine())
+                .count();
     }
 }
