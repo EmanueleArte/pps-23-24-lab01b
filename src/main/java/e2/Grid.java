@@ -24,4 +24,19 @@ public interface Grid {
      */
     boolean isMine(Pair<Integer, Integer> pos);
 
+    /**
+     * Switches the flag status of the cell at the given position.
+     *
+     * @param pos the position of the cell to be flagged
+     */
+    void switchFlag(Pair<Integer, Integer> pos);
+
+    /**
+     * Checks if the cell at the given position is flagged.
+     *
+     * @param pos the position of the cell to be checked
+     * @return true if the cell is flagged, false otherwise
+     */
+    boolean isFlagged(Pair<Integer, Integer> pos);
+
 }

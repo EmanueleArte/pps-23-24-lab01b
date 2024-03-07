@@ -58,4 +58,14 @@ public class GridImpl implements Grid {
     public boolean isMine(Pair<Integer, Integer> pos) {
         return this.cells.get(pos).isMine();
     }
+
+    @Override
+    public void switchFlag(Pair<Integer, Integer> pos) {
+        this.cells.get(pos).switchFlag();
+    }
+
+    @Override
+    public boolean isFlagged(Pair<Integer, Integer> pos) {
+        return this.cells.get(pos).isFlagged();
+    }
 }
