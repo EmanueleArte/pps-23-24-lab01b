@@ -16,20 +16,21 @@ public class GridImpl implements Grid {
      * @param size  the size of the grid, if less than 1, it will be set to 1
      * @param mines the number of mines, if less than 0, it will be set to 0 and if greater than the size squared,
      *              it will be set to the size squared
+     * @param minesPositions the list of mines positions
      */
-    public GridImpl(int size, int mines, List<Pair<Integer, Integer>> minesList) {
+    public GridImpl(int size, int mines, List<Pair<Integer, Integer>> minesPositions) {
         int gridSize = Math.max(1, size);
         this.mines = mines < 0 ? 0 : Math.min(gridSize * gridSize, mines);
         this.cells = new HashMap<>();
 
-        if (minesList.isEmpty()) {
-            minesList = generateMines(gridSize);
+        if (minesPositions.isEmpty()) {
+            minesPositions = generateMines(gridSize);
         }
 
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
                 Pair<Integer, Integer> pos = new Pair<>(i, j);
-                this.cells.put(pos, new CellImpl(minesList.contains(pos)));
+                this.cells.put(pos, new CellImpl(minesPositions.contains(pos)));
             }
         }
     }
