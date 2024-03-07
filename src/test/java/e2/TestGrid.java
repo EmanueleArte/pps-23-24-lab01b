@@ -60,4 +60,12 @@ public class TestGrid {
         assertTrue(this.grid.isFlagged(pos));
     }
 
+    @Test
+    void testWin() {
+        this.grid = new GridImpl(1, 1);
+        Pair<Integer, Integer> pos = new Pair<>(0, 0);
+        this.grid.switchFlag(pos);
+        assertEquals(0, this.grid.getMines());
+    }
+
 }
