@@ -32,4 +32,13 @@ public class TestGrid {
         );
     }
 
+    @Test
+    void testGridCreationWithInvalidMines() {
+        this.grid = new GridImpl(SIZE, -1);
+        assertAll(
+                () -> assertEquals(SIZE * SIZE, this.grid.getSize()),
+                () -> assertEquals(0, this.grid.getMines())
+        );
+    }
+
 }
