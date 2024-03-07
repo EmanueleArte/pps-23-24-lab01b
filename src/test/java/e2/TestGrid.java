@@ -53,4 +53,11 @@ public class TestGrid {
         assertFalse(this.grid.isMine(new Pair<>(0, 0)));
     }
 
+    @Test
+    void testFlagCell() {
+        Pair<Integer, Integer> pos = new Pair<>(0, 0);
+        this.grid.switchFlag(pos);
+        assertTrue(this.grid.isFlagged(pos));
+    }
+
 }
