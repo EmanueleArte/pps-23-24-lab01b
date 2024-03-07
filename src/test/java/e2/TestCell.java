@@ -19,4 +19,13 @@ public class TestCell {
         assertTrue(this.cell.isMine());
     }
 
+    @Test
+    void testIsNotMine() {
+        this.cell = new CellImpl(false);
+        assertFalse(this.cell.isMine());
+    }
+
+
+
+
 }
