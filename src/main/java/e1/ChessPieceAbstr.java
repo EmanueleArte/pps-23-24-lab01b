@@ -21,6 +21,11 @@ public abstract class ChessPieceAbstr implements ChessPiece {
     }
 
     @Override
+    public void setPosition(Pair<Integer, Integer> position) {
+        this.position = position;
+    }
+
+    @Override
     public int getRow() {
         return this.position.getX();
     }

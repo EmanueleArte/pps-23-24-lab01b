@@ -11,9 +11,8 @@ public class LogicTest {
 
     @BeforeEach
     void beforeEach() {
-        logics = new LogicsImpl(SIZE);
+        this.logics = new LogicsImpl(SIZE);
     }
-
 
     @Test
     public void testPawnPositioning() {

@@ -12,6 +12,12 @@ public interface ChessPiece {
     Pair<Integer, Integer> getPosition();
 
     /**
+     * Setter for the position of the piece into the chessboard.
+     * @param position the new position of the piece into the chessboard
+     */
+    void setPosition(final Pair<Integer, Integer> position);
+
+    /**
      * Getter for the X coordinate of the piece into the chessboard.
      * @return the X of the piece into the chessboard
      */
