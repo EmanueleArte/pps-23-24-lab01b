@@ -26,5 +26,12 @@ public class LogicTest {
         assertTrue(logics.isWin());
     }
 
+    @Test
+    void testIsLost() {
+        this.logics = new LogicsImpl(1, 1);
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        assertTrue(logics.isLost(this.logics.revealCell(position)));
+    }
+
 
 }
