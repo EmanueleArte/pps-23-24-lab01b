@@ -17,7 +17,6 @@ public class GUI extends JFrame {
     private final Logics logics;
 
     public GUI(int size, int mines) {
-        size = Math.max(1, size);
         this.logics = new LogicsImpl(size, mines);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(100 * size, 100 * size);
