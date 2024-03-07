@@ -41,4 +41,10 @@ public class TestGrid {
         );
     }
 
+    @Test
+    void testMineFound() {
+        this.grid = new GridImpl(1, 1);
+        assertTrue(this.grid.selectCell(new Pair<>(0, 0)));
+    }
+
 }
