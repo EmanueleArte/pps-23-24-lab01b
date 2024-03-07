@@ -17,20 +17,19 @@ public class LogicTest {
 
     @Test
     void testIsNotWin() {
-        assertFalse(logics.isWin());
+        assertFalse(this.logics.isWin());
     }
 
     @Test
     void testIsWin() {
         this.logics = new LogicsImpl(SIZE, 0);
-        assertTrue(logics.isWin());
+        assertTrue(this.logics.isWin());
     }
 
     @Test
     void testIsLost() {
         this.logics = new LogicsImpl(1, 1);
-        Pair<Integer, Integer> position = new Pair<>(0, 0);
-        assertTrue(logics.isLost(this.logics.revealCell(position)));
+        assertTrue(this.logics.isLost(new Pair<>(0, 0)));
     }
 
 
