@@ -25,7 +25,25 @@ public class TestCell {
         assertFalse(this.cell.isMine());
     }
 
+    @Test
+    void testIsFlagged() {
+        assertFalse(this.cell.isFlagged());
+    }
 
+    @Test
+    void testSwitchFlag() {
+        this.cell.switchFlag();
+        assertTrue(this.cell.isFlagged());
+    }
+
+    @Test
+    void testMultipleSwitchFlag() {
+        this.cell.switchFlag();
+        this.cell.switchFlag();
+        assertFalse(this.cell.isFlagged());
+        this.cell.switchFlag();
+        assertTrue(this.cell.isFlagged());
+    }
 
 
 }
