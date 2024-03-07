@@ -17,7 +17,7 @@ public class GridImpl implements Grid {
      */
     public GridImpl(int size, int mines) {
         int gridSize = Math.max(1, size);
-        this.mines = Math.min(gridSize * gridSize, mines);
+        this.mines = mines < 0 ? 0 : Math.min(gridSize * gridSize, mines);
         this.cells = new HashMap<>();
 
         List<Pair<Integer, Integer>> minesList = generateMines(gridSize);
