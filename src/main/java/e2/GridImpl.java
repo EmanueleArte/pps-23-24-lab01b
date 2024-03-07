@@ -45,12 +45,17 @@ public class GridImpl implements Grid {
 
     @Override
     public int getMines() {
-
-        return ;
+        int mines = this.mines;
+        for (Cell cell : this.cells.values()) {
+            if (cell.isMine() && cell.isFlagged()) {
+                mines--;
+            }
+        }
+        return mines;
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return this.cells.size();
     }
 }
