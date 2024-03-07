@@ -75,4 +75,10 @@ public class TestGrid {
         assertEquals(GridImpl.MINE_FOUND, this.grid.selectCell(pos));
     }
 
+    @Test
+    void testSelectCell() {
+        this.grid = new GridImpl(SIZE, 0);
+        assertEquals(0, this.grid.selectCell(new Pair<>(1, 1)));
+    }
+
 }
