@@ -23,4 +23,13 @@ public class TestGrid {
         );
     }
 
+    @Test
+    void testGridCreationWithInvalidParameters() {
+        this.grid = new GridImpl(-1, MINES);
+        assertAll(
+                () -> assertEquals(1, this.grid.getSize()),
+                () -> assertEquals(1, this.grid.getMines())
+        );
+    }
+
 }
