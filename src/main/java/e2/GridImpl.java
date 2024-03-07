@@ -5,6 +5,7 @@ import java.util.stream.IntStream;
 
 public class GridImpl implements Grid {
 
+    public static int MINE_FOUND = -1;
     private final int mines;
     private final Map<Pair<Integer, Integer>, Cell> cells;
     private final Random random = new Random();

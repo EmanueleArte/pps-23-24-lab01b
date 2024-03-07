@@ -68,4 +68,11 @@ public class TestGrid {
         assertEquals(0, this.grid.getMines());
     }
 
+    @Test
+    void testLose() {
+        this.grid = new GridImpl(1, 1);
+        Pair<Integer, Integer> pos = new Pair<>(0, 0);
+        assertEquals(GridImpl.MINE_FOUND, this.grid.selectCell(pos));
+    }
+
 }
