@@ -1,6 +1,7 @@
 package e2;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class GridImpl implements Grid {
 
@@ -34,10 +35,10 @@ public class GridImpl implements Grid {
         int gridSize = size * size;
         List<Pair<Integer, Integer>> mines = new ArrayList<>();
         for (int i = 0; i < this.mines; i++) {
-            Pair<Integer, Integer> mine = new Pair<>(random.nextInt(gridSize), random.nextInt(gridSize));
-            while (mines.contains(mine)) {
+            Pair<Integer, Integer> mine;
+            do {
                 mine = new Pair<>(random.nextInt(gridSize), random.nextInt(gridSize));
-            }
+            } while (mines.contains(mine));
             mines.add(mine);
         }
         return mines;
@@ -45,13 +46,7 @@ public class GridImpl implements Grid {
 
     @Override
     public int getMines() {
-        int mines = this.mines;
-        for (Cell cell : this.cells.values()) {
-            if (cell.isMine() && cell.isFlagged()) {
-                mines--;
-            }
-        }
-        return mines;
+        return (int) (this.mines - this.cells.values().stream().filter(Cell::isMine).filter(Cell::isFlagged).count());
     }
 
     @Override
