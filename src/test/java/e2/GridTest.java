@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestGrid {
+public class GridTest {
 
     private static final int SIZE = 5;
     private static final int MINES = 5;
