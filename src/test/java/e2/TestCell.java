@@ -45,5 +45,15 @@ public class TestCell {
         assertTrue(this.cell.isFlagged());
     }
 
+    @Test
+    void testIsRevealed() {
+        assertFalse(this.cell.isRevealed());
+    }
+
+    @Test
+    void testReveal() {
+        this.cell.reveal();
+        assertTrue(this.cell.isRevealed());
+    }
 
 }
