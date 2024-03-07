@@ -15,6 +15,16 @@ public class LogicTest {
         this.logics = new LogicsImpl(SIZE, MINES);
     }
 
+    @Test
+    void testIsNotWin() {
+        assertFalse(logics.isWin());
+    }
+
+    @Test
+    void testIsWin() {
+        this.logics = new LogicsImpl(SIZE, 0);
+        assertTrue(logics.isWin());
+    }
 
 
 }
