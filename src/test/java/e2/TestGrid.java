@@ -44,7 +44,13 @@ public class TestGrid {
     @Test
     void testMineFound() {
         this.grid = new GridImpl(1, 1);
-        assertTrue(this.grid.selectCell(new Pair<>(0, 0)));
+        assertTrue(this.grid.isMine(new Pair<>(0, 0)));
+    }
+
+    @Test
+    void testMineNotFound() {
+        this.grid = new GridImpl(1, 0);
+        assertFalse(this.grid.isMine(new Pair<>(0, 0)));
     }
 
 }

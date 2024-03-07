@@ -53,4 +53,9 @@ public class GridImpl implements Grid {
     public int getSize() {
         return this.cells.size();
     }
+
+    @Override
+    public boolean isMine(Pair<Integer, Integer> pos) {
+        return this.cells.get(pos).isMine();
+    }
 }

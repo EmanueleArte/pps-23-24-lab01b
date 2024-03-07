@@ -16,4 +16,12 @@ public interface Grid {
      */
     int getSize();
 
+    /**
+     * Checks if the cell at the given position is a mine.
+     *
+     * @param pos the position of the cell to be selected
+     * @return true if a mine was found, false otherwise
+     */
+    boolean isMine(Pair<Integer, Integer> pos);
+
 }
