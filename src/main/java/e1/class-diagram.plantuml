@@ -1,0 +1,41 @@
+@startuml classes
+!theme plain
+
+interface Logics {
+
+}
+
+class LogicsImpl {
+
+}
+
+interface Chessboard {
+
+}
+
+class ChessboardImpl {
+
+}
+
+interface ChessPiece {
+
+}
+
+abstract class ChessPieceAbstr {
+
+}
+
+class Knight {
+
+}
+
+LogicsImpl .up.|> Logics
+ChessboardImpl .down.|> Chessboard
+ChessPieceAbstr .up.|> ChessPiece
+ChessPieceAbstr <|-- Knight
+
+ChessPiece --o ChessboardImpl
+ChessPiece --* LogicsImpl
+Chessboard -left-* LogicsImpl
+
+@enduml
