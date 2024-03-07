@@ -32,5 +32,11 @@ public class LogicTest {
         assertTrue(this.logics.isLost(new Pair<>(0, 0)));
     }
 
+    @Test
+    void testSwitchCellFlag() {
+        this.logics = new LogicsImpl(1, 1);
+        this.logics.switchCellFlag(new Pair<>(0, 0));
+        assertTrue(this.logics.isWin());
+    }
 
 }
