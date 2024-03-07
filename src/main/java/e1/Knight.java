@@ -2,7 +2,6 @@ package e1;
 
 /**
  * Represents a knight in a chess game. Extension of {@link ChessPieceAbstr}.
-
  */
 public class Knight extends ChessPieceAbstr {
 

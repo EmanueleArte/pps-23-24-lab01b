@@ -1,6 +1,5 @@
 package e2;
 
-import e1.ChessPieceAbstr;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;

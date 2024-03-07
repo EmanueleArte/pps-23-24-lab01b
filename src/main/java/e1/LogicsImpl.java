@@ -1,7 +1,5 @@
 package e1;
 
-import java.util.*;
-
 public class LogicsImpl implements Logics {
 
     private final ChessPiece pawn;
