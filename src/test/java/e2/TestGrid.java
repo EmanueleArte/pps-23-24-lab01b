@@ -15,4 +15,12 @@ public class TestGrid {
         this.grid = new GridImpl(SIZE, MINES);
     }
 
+    @Test
+    void testGridCreation() {
+        assertAll(
+                () -> assertEquals(SIZE * SIZE, this.grid.getSize()),
+                () -> assertEquals(MINES, this.grid.getMines())
+        );
+    }
+
 }
