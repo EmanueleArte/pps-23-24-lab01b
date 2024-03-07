@@ -68,13 +68,17 @@ public class ChessboardImpl implements Chessboard {
     @Override
     public boolean hit(ChessPiece piece, int row, int column) {
         if (piece.getRow() != row && piece.getColumn() != column) {
-            boolean isHit = this.pieces.stream()
-                    .anyMatch(p -> p.getRow() == row && p.getColumn() == column);
+            boolean isHit = isHit(row, column);
             if (piece.move(row, column, this.size)) {
                 return isHit;
             }
         }
         return false;
+    }
+
+    private boolean isHit(int row, int column) {
+        return this.pieces.stream()
+                .anyMatch(p -> p.getRow() == row && p.getColumn() == column);
     }
 
 }
