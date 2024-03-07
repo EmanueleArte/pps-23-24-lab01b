@@ -18,10 +18,10 @@ public interface Logics {
     boolean isLost(Pair<Integer, Integer> pos);
 
     /**
-     * Method to reveal a cell.
+     * Method to set the flag of a cell.
      *
      * @param pos the position of the cell to reveal
      */
-    int revealCell(Pair<Integer, Integer> pos);
+    void switchCellFlag(Pair<Integer, Integer> pos);
 
 }

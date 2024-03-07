@@ -40,7 +40,7 @@ public class LogicsImpl implements Logics {
     }
 
     @Override
-    public int revealCell(Pair<Integer, Integer> pos) {
-        return this.grid.revealCell(pos);
+    public void switchCellFlag(Pair<Integer, Integer> pos) {
+        this.grid.switchFlag(pos);
     }
 }
