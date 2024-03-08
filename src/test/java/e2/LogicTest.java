@@ -46,6 +46,28 @@ public class LogicTest {
         assertEquals(0, this.logics.getCellsToShow().size());
     }
 
-    
+    @Test
+    void testRevealAllCellsNearToZeroMineCell() {
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        List<Pair<Integer, Integer>> minesPositions = List.of(
+                new Pair<>(0, 2),
+                new Pair<>(1, 2),
+                new Pair<>(2, 2),
+                new Pair<>(2, 0),
+                new Pair<>(2, 1)
+        );
+        List<Pair<Integer, Integer>> revealedCells = List.of(
+                new Pair<>(0, 0),
+                new Pair<>(0, 1),
+                new Pair<>(1, 0),
+                new Pair<>(1, 1)
+        );
+        this.logics = new LogicsImpl(SIZE, 0, minesPositions);
+        assertAll(
+                () -> assertFalse(this.logics.isLost(position)),
+                () -> assertEquals(revealedCells.size(), this.logics.getCellsToShow().size()),
+                () -> assertTrue(this.logics.getCellsToShow().keySet().containsAll(revealedCells))
+        );
+    }
 
 }
