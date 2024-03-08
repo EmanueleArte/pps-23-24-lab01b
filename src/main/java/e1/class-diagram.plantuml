@@ -2,31 +2,39 @@
 !theme plain
 
 interface Logics {
-
+    + boolean hit(row: int, col: int)
+    + boolean hasKnight(row: int, col: int)
+    + boolean hasPawn(row: int, col: int);
 }
 
 class LogicsImpl {
-
+    - pawn: ChessPiece
+    - knight: ChessPiece
+    - chessboard: Chessboard
 }
 
 interface Chessboard {
-
+    + Pair<Integer, Integer> randomEmptyPosition()
+    + addPiece(piece: ChessPiece)
+    + removePiece(piece: ChessPiece)
+    + boolean hit(piece: ChessPiece, row: int, column: int)
 }
 
 class ChessboardImpl {
-
+    - pieces: List<ChessPiece>
+    - size: int
 }
 
 interface ChessPiece {
-
+    + Pair<Integer, Integer> getPosition()
+    + void move(row: int, column: int, size: int)
 }
 
 abstract class ChessPieceAbstr {
-
+    - position: Pair<Integer, Integer>
 }
 
 class Knight {
-
 }
 
 LogicsImpl .up.|> Logics

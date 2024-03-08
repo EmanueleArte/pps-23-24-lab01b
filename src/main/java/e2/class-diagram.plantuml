@@ -1,0 +1,54 @@
+@startuml classes
+!theme plain
+
+interface Logics {
+    + boolean isWin();
+    + boolean isLost(pos: Pair<Integer, Integer> )
+    + void switchCellFlag(pos: Pair<Integer, Integer>)
+    + Map<Pair<Integer, Integer>, Integer> getCellsToShow()
+    + void revealAll()
+}
+
+class LogicsImpl {
+    - grid: Grid
+}
+
+interface Grid {
+    + int getRemainingMines();
+    + boolean isMine(Pair<Integer, Integer> pos);
+    + void switchFlag(Pair<Integer, Integer> pos);
+    + int revealCell(Pair<Integer, Integer> pos);
+    + Cell getCell(Pair<Integer, Integer> pos);
+    + Stream<Pair<Integer, Integer>> getCellsAroundPositions(Pair<Integer, Integer> pos);
+}
+
+class GridImpl {
+    - mines: int
+    - cells: Map<Pair<Integer, Integer>, Cell>
+}
+
+interface Cell {
+    + boolean isMine()
+    + boolean isRevealed()
+    + boolean isFlagged()
+    + int getMinesAround()
+    + void reveal()
+    + void switchFlag()
+    + void setMinesAround(minesAround: int)
+}
+
+class CellImpl {
+    - isMine: boolean
+    - isRevealed: boolean
+    - isFlagged: boolean
+    - minesAround: int
+}
+
+LogicsImpl .up.|> Logics
+GridImpl .up.|> Grid
+CellImpl .down.|> Cell
+
+Cell --* GridImpl
+Grid -left-* LogicsImpl
+
+@enduml
