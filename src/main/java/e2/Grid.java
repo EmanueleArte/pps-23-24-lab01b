@@ -5,11 +5,18 @@ import java.util.stream.Stream;
 public interface Grid {
 
     /**
+     * Returns the number of mines in the grid.
+     *
+     * @return the number of mines in the grid
+     */
+    int getMines();
+
+    /**
      * Returns the number of mines not already flagged in the grid.
      *
      * @return the number of not flagged mines in the grid
      */
-    int getMines();
+    int getRemainingMines();
 
     /**
      * Returns the size of the grid.

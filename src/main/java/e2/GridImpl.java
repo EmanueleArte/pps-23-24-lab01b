@@ -66,6 +66,11 @@ public class GridImpl implements Grid {
 
     @Override
     public int getMines() {
+        return this.mines;
+    }
+
+    @Override
+    public int getRemainingMines() {
         return (int) (this.mines - this.cells.values().stream().filter(Cell::isMine).filter(Cell::isFlagged).count());
     }
 

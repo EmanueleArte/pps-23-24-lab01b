@@ -2,9 +2,7 @@ package e2;
 
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,7 +21,7 @@ public class GridTest {
     void testGridCreation() {
         assertAll(
                 () -> assertEquals(SIZE * SIZE, this.grid.getSize()),
-                () -> assertEquals(MINES, this.grid.getMines())
+                () -> assertEquals(MINES, this.grid.getRemainingMines())
         );
     }
 
@@ -32,7 +30,7 @@ public class GridTest {
         this.grid = new GridImpl(-1, MINES);
         assertAll(
                 () -> assertEquals(1, this.grid.getSize()),
-                () -> assertEquals(1, this.grid.getMines())
+                () -> assertEquals(1, this.grid.getRemainingMines())
         );
     }
 
@@ -41,7 +39,7 @@ public class GridTest {
         this.grid = new GridImpl(SIZE, -1);
         assertAll(
                 () -> assertEquals(SIZE * SIZE, this.grid.getSize()),
-                () -> assertEquals(0, this.grid.getMines())
+                () -> assertEquals(0, this.grid.getRemainingMines())
         );
     }
 
@@ -69,7 +67,7 @@ public class GridTest {
         this.grid = new GridImpl(1, 1);
         Pair<Integer, Integer> position = new Pair<>(0, 0);
         this.grid.switchFlag(position);
-        assertEquals(0, this.grid.getMines());
+        assertEquals(0, this.grid.getRemainingMines());
     }
 
     @Test

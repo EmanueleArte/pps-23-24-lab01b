@@ -35,7 +35,8 @@ public class LogicsImpl implements Logics {
 
     @Override
     public boolean isWin() {
-        return this.grid.getMines() == 0 && this.getCellsToShow().size() == this.grid.getSize();
+        return this.grid.getRemainingMines() == 0 && this.getCellsToShow().size() == this.grid.getSize() && this.getPositionsStream()
+                .filter(this.grid::isFlagged).count() == this.grid.getMines();
     }
 
     @Override
