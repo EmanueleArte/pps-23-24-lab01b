@@ -61,7 +61,7 @@ public class LogicsImpl implements Logics {
         int nearMines = this.grid.revealCell(pos);
         if (nearMines == 0) {
             this.grid.getCellsAroundPositions(pos)
-                    .filter(p -> !this.grid.isFlagged(p))
+                    .filter(p -> !this.grid.isFlagged(p) && !this.grid.isRevealed(p))
                     .forEach(this::revealCell);
         }
         return nearMines;
