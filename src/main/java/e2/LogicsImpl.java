@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LogicsImpl implements Logics {
 
@@ -49,12 +50,16 @@ public class LogicsImpl implements Logics {
 
     @Override
     public Map<Pair<Integer, Integer>, Integer> getCellsToShow() {
-        return IntStream.range(0, (int) Math.sqrt(this.grid.getSize()))
-                .boxed()
-                .flatMap(i -> IntStream.range(0, (int) Math.sqrt(this.grid.getSize()))
-                        .mapToObj(j -> new Pair<>(i, j)))
+        return this.getPositionsStream()
                 .filter(p -> this.grid.isFlagged(p) || this.grid.isRevealed(p))
                 .collect(Collectors.toMap(p -> p, p -> this.grid.getCell(p).getMinesAround()));
+    }
+
+    @Override
+    public void revealAll() {
+        this.getPositionsStream()
+                .filter(p -> !this.grid.isRevealed(p))
+                .forEach(this::revealCell);
     }
 
     private int revealCell(Pair<Integer, Integer> pos) {
@@ -67,5 +72,11 @@ public class LogicsImpl implements Logics {
         return nearMines;
     }
 
+    private Stream<Pair<Integer, Integer>> getPositionsStream() {
+        return IntStream.range(0, (int) Math.sqrt(this.grid.getSize()))
+                .boxed()
+                .flatMap(i -> IntStream.range(0, (int) Math.sqrt(this.grid.getSize()))
+                        .mapToObj(j -> new Pair<>(i, j)));
+    }
 
 }

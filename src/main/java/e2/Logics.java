@@ -35,4 +35,9 @@ public interface Logics {
      */
     Map<Pair<Integer, Integer>, Integer> getCellsToShow();
 
+    /**
+     * Method to reveal all the cells of the board.
+     */
+    void revealAll();
+
 }
