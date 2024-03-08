@@ -62,7 +62,12 @@ public class LogicsImpl implements Logics {
     public void revealAll() {
         this.getPositionsStream()
                 .filter(p -> !this.grid.isRevealed(p))
-                .forEach(this::revealCell);
+                .forEach(p -> {
+                    this.revealCell(p);
+                    if (this.grid.getCell(p).isFlagged()) {
+                        this.grid.switchFlag(p);
+                    }
+                });
     }
 
     private int revealCell(Pair<Integer, Integer> pos) {

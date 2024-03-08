@@ -31,16 +31,12 @@ public class GUI extends JFrame {
             boolean aMineWasFound = this.logics.isLost(pos); // call the logic here to tell it that cell at 'pos' has been seleced
             if (aMineWasFound) {
                 quitGame();
+                this.removeAllListeners();
                 JOptionPane.showMessageDialog(this, "You lost!!");
             } else {
                 drawBoard();
             }
-            boolean isThereVictory = this.logics.isWin(); // call the logic here to ask if there is victory
-            if (isThereVictory) {
-                quitGame();
-                JOptionPane.showMessageDialog(this, "You won!!");
-                System.exit(0);
-            }
+            this.checkVictory();
         };
 
         MouseInputListener onRightClick = new MouseInputAdapter() {
@@ -53,6 +49,7 @@ public class GUI extends JFrame {
                     logics.switchCellFlag(pos);
                 }
                 drawBoard();
+                checkVictory();
             }
         };
 
@@ -75,6 +72,7 @@ public class GUI extends JFrame {
 
     private void quitGame() {
         this.logics.revealAll();
+        this.clearFlags();
         this.drawBoard();
         final var board = this.logics.getCellsToShow();
         for (var entry : this.buttons.entrySet()) {
@@ -84,9 +82,11 @@ public class GUI extends JFrame {
             final JButton bt = entry.getKey();
             final Pair<Integer, Integer> pos = entry.getValue();
             final int cellValue = board.get(pos);
-
             if (cellValue == GridImpl.MINE_FOUND) {
                 bt.setText("*");
+                bt.setEnabled(false);
+            } else if (cellValue == GridImpl.FLAGGED) {
+                bt.setText(String.valueOf(cellValue));
                 bt.setEnabled(false);
             }
         }
@@ -94,18 +94,14 @@ public class GUI extends JFrame {
 
     private void drawBoard() {
         final var board = this.logics.getCellsToShow();
+        this.clearFlags();
         if (board.isEmpty()) {
             return;
         }
         for (var entry : board.entrySet()) {
             var pos = entry.getKey();
             var cellValue = entry.getValue();
-            final JButton bt = this.buttons.entrySet().stream()
-                    .filter(e -> e.getValue().equals(pos))
-                    .map(Entry::getKey)
-                    .findFirst()
-                    .orElseThrow();
-            clearFlag(bt);
+            final JButton bt = getButtonFromPosition(pos);
             if (cellValue == GridImpl.FLAGGED) {
                 bt.setText("F");
             } else {
@@ -115,9 +111,39 @@ public class GUI extends JFrame {
         }
     }
 
-    private void clearFlag(JButton bt) {
-        if (bt.getText().equals("F")) {
-            bt.setText("");
+    private JButton getButtonFromPosition(Pair<Integer, Integer> pos) {
+        return this.buttons.entrySet().stream()
+                .filter(e -> e.getValue().equals(pos))
+                .map(Entry::getKey)
+                .findFirst()
+                .orElseThrow();
+    }
+
+    private void clearFlags() {
+        for (var bt : this.buttons.keySet()) {
+            if (bt.getText().equals("F")) {
+                bt.setText("");
+            }
+        }
+    }
+
+    private void removeAllListeners() {
+        for (var bt : this.buttons.keySet()) {
+            for (var l : bt.getActionListeners()) {
+                bt.removeActionListener(l);
+            }
+            for (var l : bt.getMouseListeners()) {
+                bt.removeMouseListener(l);
+            }
+        }
+    }
+
+    private void checkVictory() {
+        boolean isThereVictory = this.logics.isWin(); // call the logic here to ask if there is victory
+        if (isThereVictory) {
+            quitGame();
+            JOptionPane.showMessageDialog(this, "You won!!");
+            System.exit(0);
         }
     }
 
