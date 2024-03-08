@@ -117,6 +117,7 @@ public class GridImpl implements Grid {
                 .mapToObj(i -> IntStream.rangeClosed(-1, 1)
                         .mapToObj(j -> new Pair<>(pos.getX() + i, pos.getY() + j)))
                 .flatMap(p -> p)
+                .filter(p -> !p.equals(pos))
                 .filter(p -> p.getX() >= 0 && p.getX() < Math.sqrt(this.getSize()))
                 .filter(p -> p.getY() >= 0 && p.getY() < Math.sqrt(this.getSize()));
     }

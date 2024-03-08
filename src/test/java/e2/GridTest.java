@@ -114,7 +114,10 @@ public class GridTest {
                 new Pair<>(2, 1),
                 new Pair<>(2, 2)
         );
-        assertTrue(this.grid.getCellsAroundPositions(position).toList().containsAll(cellsAround));
+        assertAll(
+                () -> assertEquals(cellsAround.size(), this.grid.getCellsAroundPositions(position).count()),
+                () -> assertTrue(this.grid.getCellsAroundPositions(position).toList().containsAll(cellsAround))
+        );
     }
 
     @Test
