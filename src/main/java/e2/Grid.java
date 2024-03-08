@@ -51,6 +51,14 @@ public interface Grid {
     int revealCell(Pair<Integer, Integer> pos);
 
     /**
+     * Checks if the cell at the given position is revealed.
+     *
+     * @param pos the position of the cell to be checked
+     * @return true if the cell is revealed, false otherwise
+     */
+    boolean isRevealed(Pair<Integer, Integer> pos);
+
+    /**
      * Returns the cell at the given position.
      *
      * @param pos the position of the cell to be returned

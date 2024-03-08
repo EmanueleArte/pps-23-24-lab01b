@@ -1,6 +1,9 @@
 package e2;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LogicsImpl implements Logics {
 
@@ -36,11 +39,33 @@ public class LogicsImpl implements Logics {
 
     @Override
     public boolean isLost(Pair<Integer, Integer> pos) {
-        return this.grid.revealCell(pos) == GridImpl.MINE_FOUND;
+        return this.revealCell(pos) == GridImpl.MINE_FOUND;
     }
 
     @Override
     public void switchCellFlag(Pair<Integer, Integer> pos) {
         this.grid.switchFlag(pos);
     }
+
+    @Override
+    public Map<Pair<Integer, Integer>, Integer> getCellsToShow() {
+        return IntStream.range(0, (int) Math.sqrt(this.grid.getSize()))
+                .boxed()
+                .flatMap(i -> IntStream.range(0, (int) Math.sqrt(this.grid.getSize()))
+                        .mapToObj(j -> new Pair<>(i, j)))
+                .filter(p -> this.grid.isFlagged(p) || this.grid.isRevealed(p))
+                .collect(Collectors.toMap(p -> p, p -> this.grid.getCell(p).getMinesAround()));
+    }
+
+    private int revealCell(Pair<Integer, Integer> pos) {
+        int nearMines = this.grid.revealCell(pos);
+        if (nearMines == 0) {
+            this.grid.getCellsAroundPositions(pos)
+                    .filter(p -> !this.grid.isFlagged(p))
+                    .forEach(this::revealCell);
+        }
+        return nearMines;
+    }
+
+
 }

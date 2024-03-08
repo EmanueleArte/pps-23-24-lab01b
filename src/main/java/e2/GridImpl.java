@@ -102,6 +102,11 @@ public class GridImpl implements Grid {
     }
 
     @Override
+    public boolean isRevealed(Pair<Integer, Integer> pos) {
+        return this.cells.get(pos).isRevealed();
+    }
+
+    @Override
     public Cell getCell(Pair<Integer, Integer> pos) {
         return this.cells.get(pos);
     }

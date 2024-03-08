@@ -1,5 +1,7 @@
 package e2;
 
+import java.util.Map;
+
 public interface Logics {
 
     /**
@@ -23,5 +25,14 @@ public interface Logics {
      * @param pos the position of the cell to reveal
      */
     void switchCellFlag(Pair<Integer, Integer> pos);
+
+    /**
+     * Method to get the cells to show, so revealed and flagged cells.
+     *
+     * @param pos the position of the cell to reveal
+     * @return a map with the positions of the cells as keys and as values the number of mines around the cell or
+     * MINE_VALUE if the cell is a mine
+     */
+    Map<Pair<Integer, Integer>, Integer> getCellsToShow();
 
 }
