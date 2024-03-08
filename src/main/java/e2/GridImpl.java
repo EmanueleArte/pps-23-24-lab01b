@@ -2,6 +2,7 @@ package e2;
 
 import java.util.*;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class GridImpl implements Grid {
 
@@ -91,18 +92,25 @@ public class GridImpl implements Grid {
         if (cell.isMine()) {
             return MINE_FOUND;
         }
-        return (int) IntStream.rangeClosed(-1, 1)
-                .mapToObj(i -> IntStream.rangeClosed(-1, 1)
-                        .mapToObj(j -> new Pair<>(pos.getX() + i, pos.getY() + j)))
-                .flatMap(p -> p)
-                .filter(p -> p.getX() >= 0 && p.getX() < Math.sqrt(this.cells.size()))
-                .filter(p -> p.getY() >= 0 && p.getY() < Math.sqrt(this.cells.size()))
+        int nearMines = (int) this.getCellsAroundPositions(pos)
                 .filter(p -> this.cells.get(p).isMine())
                 .count();
+        cell.setMinesAround(nearMines);
+        return nearMines;
     }
 
     @Override
     public Cell getCell(Pair<Integer, Integer> pos) {
         return this.cells.get(pos);
+    }
+
+    @Override
+    public Stream<Pair<Integer, Integer>> getCellsAroundPositions(Pair<Integer, Integer> pos) {
+        return IntStream.rangeClosed(-1, 1)
+                .mapToObj(i -> IntStream.rangeClosed(-1, 1)
+                        .mapToObj(j -> new Pair<>(pos.getX() + i, pos.getY() + j)))
+                .flatMap(p -> p)
+                .filter(p -> p.getX() >= 0 && p.getX() < Math.sqrt(this.getSize()))
+                .filter(p -> p.getY() >= 0 && p.getY() < Math.sqrt(this.getSize()));
     }
 }

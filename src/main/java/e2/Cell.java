@@ -26,4 +26,16 @@ public interface Cell {
      * Reveal the cell
      */
     void reveal();
+
+    /**
+     * @return the number of mines around the cell
+     */
+    int getMinesAround();
+
+    /**
+     * Set the number of mines around the cell
+     *
+     * @param minesAround the number of mines around the cell
+     */
+    void setMinesAround(int minesAround);
 }

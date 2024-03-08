@@ -1,5 +1,7 @@
 package e2;
 
+import java.util.stream.Stream;
+
 public interface Grid {
 
     /**
@@ -55,5 +57,13 @@ public interface Grid {
      * @return the cell at the given position
      */
     Cell getCell(Pair<Integer, Integer> pos);
+
+    /**
+     * Returns a stream of the positions of the cells around the given position.
+     *
+     * @param pos the position of the cell to be checked
+     * @return a stream of the positions of the cells around the given position
+     */
+    Stream<Pair<Integer, Integer>> getCellsAroundPositions(Pair<Integer, Integer> pos);
 
 }
