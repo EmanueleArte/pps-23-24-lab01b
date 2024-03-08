@@ -3,6 +3,7 @@ package e2;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,6 +26,8 @@ public class LogicTest {
     @Test
     void testIsWin() {
         this.logics = new LogicsImpl(SIZE, 0);
+        assertFalse(this.logics.isWin());
+        this.logics.isLost(new Pair<>(0, 0));
         assertTrue(this.logics.isWin());
     }
 
@@ -79,6 +82,20 @@ public class LogicTest {
                 () -> assertTrue(this.logics.isWin()),
                 () -> assertEquals(SIZE * SIZE, this.logics.getCellsToShow().size())
         );
+    }
+
+    @Test
+    void testWinWithFlaggedMines() {
+        final int size = 2;
+        final int mines = 1;
+        Pair<Integer, Integer> minePosition = new Pair<>(0, 0);
+        this.logics = new LogicsImpl(size, mines, List.of(minePosition));
+        this.logics.switchCellFlag(minePosition);
+        assertFalse(this.logics.isWin());
+        this.logics.isLost(new Pair<>(1, 1));
+        this.logics.isLost(new Pair<>(0, 1));
+        this.logics.isLost(new Pair<>(1, 0));
+        assertTrue(this.logics.isWin());
     }
 
 }
