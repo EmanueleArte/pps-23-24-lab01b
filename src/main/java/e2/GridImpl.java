@@ -15,9 +15,9 @@ public class GridImpl implements Grid {
     /**
      * Constructor for the GridImpl class.
      *
-     * @param size  the size of the grid, if less than 1, it will be set to 1
-     * @param mines the number of mines, if less than 0, it will be set to 0 and if greater than the size squared,
-     *              it will be set to the size squared
+     * @param size           the size of the grid, if less than 1, it will be set to 1
+     * @param mines          the number of mines, if less than 0, it will be set to 0 and if greater than the size squared,
+     *                       it will be set to the size squared
      * @param minesPositions the list of mines positions
      */
     public GridImpl(int size, int mines, List<Pair<Integer, Integer>> minesPositions) {
@@ -93,12 +93,12 @@ public class GridImpl implements Grid {
     public int revealCell(Pair<Integer, Integer> pos) {
         Cell cell = this.cells.get(pos);
         cell.reveal();
-        if (cell.isMine()) {
-            return MINE_FOUND;
+        int nearMines = MINE_FOUND;
+        if (!cell.isMine()) {
+            nearMines = (int) this.getCellsAroundPositions(pos)
+                    .filter(p -> this.cells.get(p).isMine())
+                    .count();
         }
-        int nearMines = (int) this.getCellsAroundPositions(pos)
-                .filter(p -> this.cells.get(p).isMine())
-                .count();
         cell.setMinesAround(nearMines);
         return nearMines;
     }

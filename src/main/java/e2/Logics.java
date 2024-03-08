@@ -31,7 +31,7 @@ public interface Logics {
      *
      * @param pos the position of the cell to reveal
      * @return a map with the positions of the cells as keys and as values the number of mines around the cell or
-     * MINE_VALUE if the cell is a mine
+     * MINE_FOUND value if the cell is a mine
      */
     Map<Pair<Integer, Integer>, Integer> getCellsToShow();
 

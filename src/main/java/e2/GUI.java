@@ -28,14 +28,14 @@ public class GUI extends JFrame {
         ActionListener onClick = (e) -> {
             final JButton bt = (JButton) e.getSource();
             final Pair<Integer, Integer> pos = buttons.get(bt);
-            boolean aMineWasFound = false; // call the logic here to tell it that cell at 'pos' has been seleced
+            boolean aMineWasFound = this.logics.isLost(pos); // call the logic here to tell it that cell at 'pos' has been seleced
             if (aMineWasFound) {
                 quitGame();
                 JOptionPane.showMessageDialog(this, "You lost!!");
             } else {
                 drawBoard();
             }
-            boolean isThereVictory = false; // call the logic here to ask if there is victory
+            boolean isThereVictory = this.logics.isWin(); // call the logic here to ask if there is victory
             if (isThereVictory) {
                 quitGame();
                 JOptionPane.showMessageDialog(this, "You won!!");
@@ -50,6 +50,7 @@ public class GUI extends JFrame {
                 if (bt.isEnabled()) {
                     final Pair<Integer, Integer> pos = buttons.get(bt);
                     // call the logic here to put/remove a flag
+                    logics.switchCellFlag(pos);
                 }
                 drawBoard();
             }
@@ -73,19 +74,50 @@ public class GUI extends JFrame {
     }
 
     private void quitGame() {
+        this.logics.revealAll();
         this.drawBoard();
+        final var board = this.logics.getCellsToShow();
         for (var entry : this.buttons.entrySet()) {
             // call the logic here
             // if this button is a mine, draw it "*"
             // disable the button
+            final JButton bt = entry.getKey();
+            final Pair<Integer, Integer> pos = entry.getValue();
+            final int cellValue = board.get(pos);
+
+            if (cellValue == GridImpl.MINE_FOUND) {
+                bt.setText("*");
+                bt.setEnabled(false);
+            }
         }
     }
 
     private void drawBoard() {
-        for (var entry : this.buttons.entrySet()) {
-            // call the logic here
-            // if this button is a cell with counter, put the number
-            // if this button has a flag, put the flag
+        final var board = this.logics.getCellsToShow();
+        if (board.isEmpty()) {
+            return;
+        }
+        for (var entry : board.entrySet()) {
+            var pos = entry.getKey();
+            var cellValue = entry.getValue();
+            final JButton bt = this.buttons.entrySet().stream()
+                    .filter(e -> e.getValue().equals(pos))
+                    .map(Entry::getKey)
+                    .findFirst()
+                    .orElseThrow();
+            clearFlag(bt);
+            if (cellValue == GridImpl.FLAGGED) {
+                bt.setText("F");
+            } else {
+                bt.setText(String.valueOf(cellValue));
+                bt.setEnabled(false);
+            }
+        }
+    }
+
+    private void clearFlag(JButton bt) {
+        if (bt.getText().equals("F")) {
+            bt.setText("");
         }
     }
 

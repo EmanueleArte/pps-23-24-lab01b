@@ -52,7 +52,9 @@ public class LogicsImpl implements Logics {
     public Map<Pair<Integer, Integer>, Integer> getCellsToShow() {
         return this.getPositionsStream()
                 .filter(p -> this.grid.isFlagged(p) || this.grid.isRevealed(p))
-                .collect(Collectors.toMap(p -> p, p -> this.grid.getCell(p).getMinesAround()));
+                .collect(Collectors.toMap(p -> p, p ->
+                        this.grid.getCell(p).isFlagged() ? GridImpl.FLAGGED : this.grid.getCell(p).getMinesAround()
+                ));
     }
 
     @Override
