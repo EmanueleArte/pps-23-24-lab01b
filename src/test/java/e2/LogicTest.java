@@ -70,4 +70,15 @@ public class LogicTest {
         );
     }
 
+    @Test
+    void testRevealAllCellsInOne() {
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        this.logics = new LogicsImpl(SIZE, 0);
+        assertAll(
+                () -> assertFalse(this.logics.isLost(position)),
+                () -> assertTrue(this.logics.isWin()),
+                () -> assertEquals(SIZE * SIZE, this.logics.getCellsToShow().size())
+        );
+    }
+
 }
