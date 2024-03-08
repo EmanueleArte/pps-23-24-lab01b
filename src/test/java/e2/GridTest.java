@@ -2,6 +2,10 @@ package e2;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GridTest {
@@ -79,6 +83,35 @@ public class GridTest {
     void testRevealCell() {
         this.grid = new GridImpl(SIZE, 0);
         assertEquals(0, this.grid.revealCell(new Pair<>(1, 1)));
+    }
+
+    @Test
+    void testCellsAround() {
+        this.grid = new GridImpl(SIZE, MINES);
+        Pair<Integer, Integer> position = new Pair<>(1, 1);
+        List<Pair<Integer, Integer>> cellsAround = List.of(
+                new Pair<>(0, 0),
+                new Pair<>(0, 1),
+                new Pair<>(0, 2),
+                new Pair<>(1, 0),
+                new Pair<>(1, 2),
+                new Pair<>(2, 0),
+                new Pair<>(2, 1),
+                new Pair<>(2, 2)
+        );
+        assertTrue(this.grid.getCellsAroundPositions(position).toList().containsAll(cellsAround));
+    }
+
+    @Test
+    void testCellsAroundBorder() {
+        this.grid = new GridImpl(SIZE, MINES);
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        List<Pair<Integer, Integer>> cellsAround = List.of(
+                new Pair<>(0, 1),
+                new Pair<>(1, 0),
+                new Pair<>(1, 1)
+        );
+        assertTrue(this.grid.getCellsAroundPositions(position).toList().containsAll(cellsAround));
     }
 
 }
