@@ -80,9 +80,24 @@ public class GridTest {
     }
 
     @Test
-    void testRevealCell() {
+    void testRevealCellNoMinesAround() {
         this.grid = new GridImpl(SIZE, 0);
         assertEquals(0, this.grid.revealCell(new Pair<>(1, 1)));
+    }
+
+    @Test
+    void testRevealCellMinesAround() {
+        Pair<Integer, Integer> position = new Pair<>(0, 0);
+        List<Pair<Integer, Integer>> minesPositions = List.of(
+                new Pair<>(0, 1),
+                new Pair<>(1, 1),
+                new Pair<>(1, 0)
+        );
+        this.grid = new GridImpl(SIZE, 0, minesPositions);
+        assertAll(
+                () -> assertEquals(minesPositions.size(), this.grid.revealCell(position)),
+                () -> assertEquals(minesPositions.size(), this.grid.getCell(position).getMinesAround())
+        );
     }
 
     @Test

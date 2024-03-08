@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class GridImpl implements Grid {
 
     public static int MINE_FOUND = -1;
-    private final int mines;
+    private int mines;
     private final Map<Pair<Integer, Integer>, Cell> cells;
     private final Random random = new Random();
 
@@ -26,6 +26,8 @@ public class GridImpl implements Grid {
 
         if (minesPositions.isEmpty()) {
             minesPositions = generateMines(gridSize);
+        } else {
+            this.mines = minesPositions.size();
         }
 
         for (int i = 0; i < gridSize; i++) {
