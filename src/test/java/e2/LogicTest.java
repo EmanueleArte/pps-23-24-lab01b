@@ -2,6 +2,8 @@ package e2;
 
 import org.junit.jupiter.api.*;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LogicTest {
@@ -38,5 +40,12 @@ public class LogicTest {
         this.logics.switchCellFlag(new Pair<>(0, 0));
         assertTrue(this.logics.isWin());
     }
+
+    @Test
+    void testEmptyCellsToShow() {
+        assertEquals(0, this.logics.getCellsToShow().size());
+    }
+
+    
 
 }
