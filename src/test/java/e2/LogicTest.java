@@ -98,4 +98,10 @@ public class LogicTest {
         assertTrue(this.logics.isWin());
     }
 
+    @Test
+    void testRevealAll() {
+        this.logics.revealAll();
+        assertEquals(SIZE * SIZE, this.logics.getCellsToShow().size());
+    }
+
 }
