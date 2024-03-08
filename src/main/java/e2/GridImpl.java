@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 public class GridImpl implements Grid {
 
     public static int MINE_FOUND = -1;
+    public static int FLAGGED = -2;
     private int mines;
     private final Map<Pair<Integer, Integer>, Cell> cells;
     private final Random random = new Random();
@@ -24,8 +25,10 @@ public class GridImpl implements Grid {
         this.mines = mines < 0 ? 0 : Math.min(gridSize * gridSize, mines);
         this.cells = new HashMap<>();
 
+        List<Pair<Integer, Integer>> minesPos = minesPositions;
+
         if (minesPositions.isEmpty()) {
-            minesPositions = generateMines(gridSize);
+            minesPos = this.generateMines(gridSize);
         } else {
             this.mines = minesPositions.size();
         }
@@ -33,7 +36,7 @@ public class GridImpl implements Grid {
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
                 Pair<Integer, Integer> pos = new Pair<>(i, j);
-                this.cells.put(pos, new CellImpl(minesPositions.contains(pos)));
+                this.cells.put(pos, new CellImpl(minesPos.contains(pos)));
             }
         }
     }
@@ -50,12 +53,11 @@ public class GridImpl implements Grid {
     }
 
     private List<Pair<Integer, Integer>> generateMines(int size) {
-        int gridSize = size * size;
         List<Pair<Integer, Integer>> mines = new ArrayList<>();
         for (int i = 0; i < this.mines; i++) {
             Pair<Integer, Integer> mine;
             do {
-                mine = new Pair<>(random.nextInt(gridSize), random.nextInt(gridSize));
+                mine = new Pair<>(random.nextInt(size), random.nextInt(size));
             } while (mines.contains(mine));
             mines.add(mine);
         }
